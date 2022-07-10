@@ -20,4 +20,17 @@ export default class EventService {
       } ]});
     return users;
   }
+
+  static async getEventById(id: string) {
+    const event = await Event.findByPk(id, { include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      } ]});
+      if (event === null) {
+        return false;
+      }
+    return event;
+  }
 }

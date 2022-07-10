@@ -21,4 +21,17 @@ export default class EventController {
       return res.status(500).json({ message: (err as Error).message });
     }
   }
+
+  static async getEventById (req: Request, res: Response) {
+    try {
+      const paramsObj = req.params;
+      const event = await EventService.getEventById(paramsObj.id);
+      if (event === false) {
+        return res.status(404).json({ message: 'Event does not exist' });
+      }
+      return res.status(200).json(event);
+    } catch (err) {
+      return res.status(500).json({ message: (err as Error).message });
+    }
+  }
 }
