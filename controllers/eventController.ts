@@ -44,4 +44,15 @@ export default class EventController {
       return res.status(500).json({ message: (err as Error).message });
     }
   }
+
+  static async updateEvent (req: Request, res: Response) {
+    try {
+      const paramsObj = req.params;
+      const bodyObj = req.body;
+      const event = await EventService.updateEvent(bodyObj, paramsObj.id);
+      return res.status(200).json(event);
+    } catch (err) {
+      return res.status(500).json({ message: (err as Error).message });
+    }
+  }
 }

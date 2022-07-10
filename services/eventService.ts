@@ -61,4 +61,10 @@ export default class EventService {
       place });
     return event;
   }
+
+  static async updateEvent(info: { datetime: string, place: string }, id: string) {
+    const { datetime, place } = info;
+    await Event.update({ datetime, place }, { where: { id } });
+    return { message: 'Event update' };
+  }
 }
