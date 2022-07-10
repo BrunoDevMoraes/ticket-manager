@@ -8,4 +8,6 @@ router.get('/events/id/:id', EventController.getEventById);
 router.get('/events/:organization', EventController.getEventsByOrganization);
 router.get('/events', EventController.getAllEvents);
 
+router.post('/events', EventController.createEvent)
+
 export default router;

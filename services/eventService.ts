@@ -33,4 +33,32 @@ export default class EventService {
       }
     return event;
   }
+
+  static async createEvent(info: {
+    name: string,
+    max_tickets: number,
+    available_tickets: number,
+    ticket_price: number,
+    organization: string,
+    creator_id: number,
+    datetime: string,
+    place: string }) {
+    const { name,
+      max_tickets,
+      available_tickets,
+      ticket_price,
+      organization,
+      creator_id,
+      datetime,
+      place } = info;
+    const event = await Event.create({ name,
+      max_tickets,
+      available_tickets,
+      ticket_price,
+      organization,
+      creator_id,
+      datetime,
+      place });
+    return event;
+  }
 }

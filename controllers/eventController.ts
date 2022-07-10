@@ -34,4 +34,14 @@ export default class EventController {
       return res.status(500).json({ message: (err as Error).message });
     }
   }
+
+  static async createEvent (req: Request, res: Response) {
+    try {
+      const bodyObj = req.body;
+      const event = await EventService.createEvent(bodyObj);
+      return res.status(201).json(event);
+    } catch (err) {
+      return res.status(500).json({ message: (err as Error).message });
+    }
+  }
 }
