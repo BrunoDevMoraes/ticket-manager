@@ -45,11 +45,27 @@ export default class TicketController {
     try {
       const paramsObj = req.params;
       const bodyObj = req.body;
-      const event = await TicketService.updateEvent(bodyObj.owner_id, paramsObj.id);
+      const event = await TicketService.updateTicket(bodyObj.owner_id, paramsObj.id);
       if (event === false) {
         return res.status(404).json({ message: `No event with id ${paramsObj.id}`  });
       }
       return res.status(200).json(event);
+    } catch (err) {
+      return res.status(500).json({ message: (err as Error).message });
+    }
+  }
+
+  static async createTickets (req: Request, res: Response) {
+    try {
+      const bodyObj = req.body;
+      const tickets = await TicketService.createTickets(bodyObj);
+      if (tickets !== undefined && tickets[0] === 'limit') {
+        return res.status(400).json(tickets[1]); //Deny
+      }
+      if (tickets !== undefined && tickets[0] === false) {
+        return res.status(400).json(tickets[1]); //Not available
+      }
+      return res.status(201).json(tickets[1]);
     } catch (err) {
       return res.status(500).json({ message: (err as Error).message });
     }
