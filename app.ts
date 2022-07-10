@@ -1,4 +1,6 @@
 import express from 'express';
+import SigninRouter from './routes/signRoute';
+import LoginRouter from './routes/loginRoute';
 
 class App {
   public app: express.Express;
@@ -27,7 +29,8 @@ class App {
   }
 
   public routes(): void {
-
+    this.app.use(SigninRouter)
+    this.app.use(LoginRouter)
   }
 }
 
