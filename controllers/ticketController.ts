@@ -27,4 +27,17 @@ export default class TicketController {
       return res.status(500).json({ message: (err as Error).message });
     }
   }
+
+  static async getTicketsByEventId (req: Request, res: Response) {
+    try {
+      const paramsObj = req.params;
+      const ticket = await TicketService.getTicketsByEventId(paramsObj.id);
+      if (ticket === false) {
+        return res.status(404).json({ message: "Event has no tickets or doesn't exist" });
+      }
+      return res.status(200).json(ticket);
+    } catch (err) {
+      return res.status(500).json({ message: (err as Error).message });
+    }
+  }
 }

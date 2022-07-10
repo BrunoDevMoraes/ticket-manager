@@ -10,8 +10,17 @@ export default class TicketService {
   }
 
   static async getTicketsByOwnerId(id: string) {
-    const tickets = await Ticket.findAll({ where: { owner_id: id }, attributes: { exclude: ['hash'] } });
-    console.log(tickets);
+    const tickets = await Ticket.findAll({ where: { owner_id: id },
+      attributes: { exclude: ['hash'] } });
+    if (tickets.length === 0) {
+      return false;
+    }
+    return tickets;
+  }
+
+  static async getTicketsByEventId(id: string) {
+    const tickets = await Ticket.findAll({ where: { event_id: id },
+      attributes: { exclude: ['hash'] } });
     if (tickets.length === 0) {
       return false;
     }
