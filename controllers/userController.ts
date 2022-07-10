@@ -15,7 +15,7 @@ export default class UserController {
     }
   }
 
-  static async getAllUsers (req: Request, res: Response) {
+  static async getAllUsers (_req: Request, res: Response) {
     try {
       const users = await UserService.getAllUsers();
       return res.status(200).json(users);
