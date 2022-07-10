@@ -11,4 +11,14 @@ export default class EventController {
       return res.status(500).json({ message: (err as Error).message });
     }
   }
+
+  static async getEventsByOrganization (req: Request, res: Response) {
+    try {
+      const paramsObj = req.params;
+      const events = await EventService.getEventsByOrganization(paramsObj.organization);
+      return res.status(200).json(events);
+    } catch (err) {
+      return res.status(500).json({ message: (err as Error).message });
+    }
+  }
 }

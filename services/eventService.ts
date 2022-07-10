@@ -10,4 +10,14 @@ export default class EventService {
       } ]});
     return users;
   }
+
+  static async getEventsByOrganization(organization: string) {
+    const users = await Event.findAll({ where: { organization }, include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: { exclude: ['password'] },
+      } ]});
+    return users;
+  }
 }
