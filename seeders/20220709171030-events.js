@@ -25,7 +25,7 @@ module.exports = {
           ticket_price: 30.00,
           creator_id: 1,
           organization: 'company',
-          createdAt: '2022-09-20 20:30:00',
+          datetime: '2022-09-20 20:30:00',
           place: 'Centro Dark: rua nova, 321, bairro novo',
           createdAt: Sequelize.literal('CURRENT_TIMESTAMP'),
           updatedAt: Sequelize.literal('CURRENT_TIMESTAMP')
