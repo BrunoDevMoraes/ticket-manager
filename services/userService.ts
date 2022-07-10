@@ -9,4 +9,9 @@ export default class UserService {
     const { name, email } = user;
     return { name, email }
   }
+
+  static async getAllUsers() {
+    const users = await User.findAll({ attributes: { exclude: ['password'] } });
+    return users;
+  }
 }

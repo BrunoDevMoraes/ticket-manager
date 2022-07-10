@@ -14,4 +14,13 @@ export default class UserController {
       return res.status(500).json({ message: (err as Error).message });
     }
   }
+
+  static async getAllUsers (req: Request, res: Response) {
+    try {
+      const users = await UserService.getAllUsers();
+      return res.status(200).json(users);
+    } catch (err) {
+      return res.status(500).json({ message: (err as Error).message });
+    }
+  }
 }
