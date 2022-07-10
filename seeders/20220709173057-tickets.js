@@ -5,6 +5,7 @@ module.exports = {
       await queryInterface.bulkInsert('Tickets',
       [
         {
+          id: 1,
           hash: 'firstticket',
           event_id: 1,
           owner_id: 2,
@@ -13,6 +14,7 @@ module.exports = {
           updatedAt: Sequelize.literal('CURRENT_TIMESTAMP')
         },
         {
+          id: 2,
           hash: 'secondticket',
           event_id: 2,
           owner_id: 3,
