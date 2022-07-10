@@ -3,6 +3,7 @@ import SigninRouter from './routes/signRoute';
 import LoginRouter from './routes/loginRoute';
 import UserRouter from './routes/userRoute';
 import EventRouter from './routes/eventRoute';
+import TicketRouter from './routes/ticketRoute';
 
 class App {
   public app: express.Express;
@@ -35,6 +36,7 @@ class App {
     this.app.use(LoginRouter);
     this.app.use(UserRouter);
     this.app.use(EventRouter);
+    this.app.use(TicketRouter);
   }
 }
 
