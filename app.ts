@@ -1,6 +1,7 @@
 import express from 'express';
 import SigninRouter from './routes/signRoute';
 import LoginRouter from './routes/loginRoute';
+import UserRouter from './routes/userRoute';
 
 class App {
   public app: express.Express;
@@ -31,6 +32,7 @@ class App {
   public routes(): void {
     this.app.use(SigninRouter)
     this.app.use(LoginRouter)
+    this.app.use(UserRouter);
   }
 }
 
