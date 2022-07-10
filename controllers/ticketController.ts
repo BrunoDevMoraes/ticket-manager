@@ -40,4 +40,18 @@ export default class TicketController {
       return res.status(500).json({ message: (err as Error).message });
     }
   }
+
+  static async updateTicketOwner (req: Request, res: Response) {
+    try {
+      const paramsObj = req.params;
+      const bodyObj = req.body;
+      const event = await TicketService.updateEvent(bodyObj.owner_id, paramsObj.id);
+      if (event === false) {
+        return res.status(404).json({ message: `No event with id ${paramsObj.id}`  });
+      }
+      return res.status(200).json(event);
+    } catch (err) {
+      return res.status(500).json({ message: (err as Error).message });
+    }
+  }
 }

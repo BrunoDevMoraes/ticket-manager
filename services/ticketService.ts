@@ -26,4 +26,12 @@ export default class TicketService {
     }
     return tickets;
   }
+
+  static async updateEvent(owner_id: string, id: string) {
+    const ticket = await Ticket.update({ owner_id }, { where: { id } });
+    if (ticket[0] === 0) {
+      return false;
+    }
+    return { message: 'Ticket owner update' };
+  }
 }
