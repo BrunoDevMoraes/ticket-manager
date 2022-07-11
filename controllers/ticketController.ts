@@ -60,10 +60,10 @@ export default class TicketController {
       const bodyObj = req.body;
       const tickets = await TicketService.createTickets(bodyObj);
       if (tickets !== undefined && tickets[0] === 'limit') {
-        return res.status(400).json(tickets[1]); //Deny
+        return res.status(403).json(tickets[1]);
       }
       if (tickets !== undefined && tickets[0] === false) {
-        return res.status(400).json(tickets[1]); //Not available
+        return res.status(404).json(tickets[1]);
       }
       return res.status(201).json(tickets[1]);
     } catch (err) {
